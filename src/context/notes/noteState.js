@@ -42,6 +42,7 @@ const NoteState = (props) => {
     });
     const note = await response.json();
     setNotes((prevNotes) => [...prevNotes, note]);
+    alert("Note added successfully!");
   };
 
   // Update note
@@ -62,6 +63,7 @@ const NoteState = (props) => {
         note._id === id ? { ...note, title, description, tag } : note
       )
     );
+    alert("Note updated successfully!");
   };
 
   // Delete note
@@ -77,6 +79,7 @@ const NoteState = (props) => {
     const data = await response.json();
     console.log(data);
     setNotes((prevNotes) => prevNotes.filter((note) => note._id !== id));
+    alert("Note deleted successfully!");
   };
 
   const editNote = (currentNote) => {

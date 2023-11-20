@@ -74,6 +74,7 @@ const Login = () => {
                 type="email"
                 id="email"
                 name="email"
+                placeholder="example@gmail.com"
                 value={credentials.email}
                 onChange={onChange}
                 className="w-full  bg-opacity-50 rounded border border-gray-300 focus:bg-gray-100 hover:border-black text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
@@ -93,6 +94,7 @@ const Login = () => {
                 type="password"
                 id="password"
                 name="password"
+                placeholder="12345"
                 value={credentials.password}
                 onChange={onChange}
                 className="w-full  bg-opacity-50 rounded border border-gray-300 focus:bg-gray-100 hover:border-black text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"

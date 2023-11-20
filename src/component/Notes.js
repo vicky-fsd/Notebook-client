@@ -21,7 +21,7 @@ const Notes = () => {
   }, []);
 
   return (
-    <div className="flex flex-col w-full">
+    <div  className="flex flex-col w-full">
       <AddNote />
       <Update />
       <h1 className="sm:text-3xl text-2xl font-medium title-font mb-8 text-gray-900">
@@ -41,8 +41,8 @@ const Notes = () => {
           <div className="flex flex-wrap gap-4">
             {notes.length !== 0 && (
               <>
-                {notes.map((note) => {
-                  return <NoteItem key={note._id} note={note} />;
+                {notes.map((note,index) => {
+                  return <NoteItem key={index} note={note} />;
                 })}
               </>
             )}

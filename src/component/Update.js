@@ -3,17 +3,22 @@ import Modal from "./Modal";
 import noteContext from "../context/notes/noteContext";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 
+
 const Update = () => {
   const context = useContext(noteContext);
+  
   const { updateNote, note, setNote, updateModalOpen, setUpdateModalOpen } = context;
+
   const handleOpenModal = () => setUpdateModalOpen(true);
   const handleCloseModal = () => setUpdateModalOpen(false);
-  const handleSubmit = (e) => {
-    updateNote(note.id, note.etitle, note.edescription, note.etag);
+
+  const handleSubmit = () => {
+    updateNote(note.id, note.etitle, note.edescription, note.etag, note.date);
     setUpdateModalOpen(false);
   };
 
   const handleChange = (e) => {
+    // Use optional chaining to avoid errors
     setNote({ ...note, [e.target.name]: e.target.value });
   };
 
@@ -51,7 +56,7 @@ const Update = () => {
                     type="text"
                     id="title"
                     name="etitle"
-                    value={note.etitle}
+                    value={note?.etitle || ""}
                     onChange={handleChange}
                     className="w-full bg-opacity-50 rounded border border-gray-300 focus:bg-gray-100 hover:border-black text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     required
@@ -70,7 +75,7 @@ const Update = () => {
                     type="text"
                     id="tag"
                     name="etag"
-                    value={note.etag}
+                    value={note?.etag || ""}
                     onChange={handleChange}
                     className="w-full  bg-opacity-50 rounded border border-gray-300 focus:bg-gray-100 hover:border-black text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                   />
@@ -89,7 +94,7 @@ const Update = () => {
                     name="edescription"
                     onChange={handleChange}
                     className="w-full bg-opacity-50 rounded border border-gray-300 focus:bg-gray-100 hover:border-black h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
-                    defaultValue={note.edescription}
+                    defaultValue={note?.edescription || ""}
                     required
                   />
                 </div>
@@ -97,10 +102,10 @@ const Update = () => {
               <div className="p-2 w-full">
                 <button
                   disabled={
-                    note.etitle.length < 3 || note.edescription.length < 3
+                    note?.etitle?.length < 3 || note?.edescription?.length < 3
                   }
                   className={`${
-                    note.etitle.length < 3 || note.edescription.length < 3
+                    note?.etitle?.length < 3 || note?.edescription?.length < 3
                       ? "cursor-not-allowed"
                       : "cursor-pointer"
                   } flex text-black border border-black py-2 px-4 focus:outline-none hover:bg-black hover:text-white rounded-md text-lg font-semibold transition-colors duration-300`}

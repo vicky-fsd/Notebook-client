@@ -1,14 +1,25 @@
 import React, { useContext, useState } from "react";
 import noteContext from "../context/notes/noteContext";
 import { FaEdit, FaTrash } from "react-icons/fa";
-const NoteItem = (props) => {
-  const context = useContext(noteContext);
-  const { deleteNote, editNote } = context;
-  const { note } = props;
-  const [click, setClick] = useState(false);
 
-  const date = new Date(note.date);
-  return (
+const NoteItem = (props) => {
+ const context = useContext(noteContext);
+ const { deleteNote, editNote } = context;
+ const { note } = props;
+ const [click, setClick] = useState(false);
+
+
+
+const formattedDate = new Date(note.date).toLocaleDateString(undefined, {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const formattedTime = new Date(note.date).toLocaleTimeString();
+
+
+ return (
     <div className="w-full sm:w-1/4 group" onClick={() => setClick(!click)}>
       <div className=" bg-gray-100 border-2 hover:border-black hover:bg-gray-200 transition-all duration-300 bg-opacity-75 p-4 sm:p-6 rounded-lg overflow-hidden relative shadow-md">
         <div className="flex justify-between items-center mb-2">
@@ -18,8 +29,7 @@ const NoteItem = (props) => {
           {(
             <div className="hidden group-hover:flex justify-center gap-x-3 cursor-pointer">
               <FaEdit onClick={() => editNote(note)} className="text-xl" />
-              <FaTrash onClick={() => deleteNote(note._id)} className="text-xl"
-              />
+              <FaTrash onClick={() => deleteNote(note._id)} className="text-xl" />
             </div>
           )}
         </div>
@@ -30,15 +40,18 @@ const NoteItem = (props) => {
           <p className="leading-relaxed text-md mb-3">
             {note.description}
           </p>
-        )}
+        )} 
         <p className="leading-relaxed">
-          {date.getTime() === 0
-            ? ""
-            : date.toLocaleDateString() + " " + date.toLocaleTimeString()}
-        </p>
+        {/* {isNaN(new Date(note.date).getTime()) ? (
+          <span>Invalid Date</span>
+        ) : (
+          <span>{formattedDate} {formattedTime}</span>
+        )} */}
+        <span>{formattedDate} {formattedTime}</span>
+      </p>
       </div>
     </div>
-  );
+ );
 };
 
 export default NoteItem;

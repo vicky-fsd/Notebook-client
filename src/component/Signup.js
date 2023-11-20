@@ -16,7 +16,7 @@ const Signup = () => {
     setLoading(true);
     const { name, email, password } = credentials;
     const host = "https://notebookserver-0zog.onrender.com";
-    // const host = "http://localhost:5000";
+    //const host = "http://localhost:5000";
     let url = `${host}/api/auth/createuser`;
 
     try {

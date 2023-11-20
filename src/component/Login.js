@@ -8,7 +8,8 @@ const Login = () => {
   const [error, setError] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const host = "https://notebookserver-0zog.onrender.com";
+   const host = "https://notebookserver-0zog.onrender.com";
+   //const host = "http://localhost:5000";
     let url = `${host}/api/auth/login`;
 
     try {

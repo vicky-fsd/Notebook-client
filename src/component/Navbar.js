@@ -38,15 +38,12 @@ const Navbar = () => {
 
   const handleSearch = () => {
     console.log("Search for:", searchQuery);
-  
-   
     const notes = context.notes;  
   
     // Use the filter method to find notes that match the search query
     const filteredNotes = notes.filter((note) =>
       note.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
-  
     // Perform actions with the filteredNotes array (e.g., update state, display results, etc.)
     console.log("Filtered Notes:", filteredNotes);
   };
